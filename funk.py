@@ -6,6 +6,15 @@ import base64
 import pyautogui
 
 
+def assert_dir(file):
+     try:
+        file = file[0]
+        my_file = file + '/*.*'
+        file_dir = glob.glob(my_file)
+        return str(file_dir)
+     except glob.error as err:
+        return 'received glob error ' + str(err)
+
 def dir_file(file):
     """
 

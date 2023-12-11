@@ -48,7 +48,8 @@ def send_message(my_socket):
             elif what_to_send_funk == 'take_screen':
 
                 my_msg = protocol.unpack(my_socket)[1]
-                image_data = base64.b64decode(my_msg[0].decode())
+                my_msg = my_msg[0]
+                image_data = base64.b64decode(my_msg.decode())
                 with open(r'/Users/iftach_1kasorla/Documents/proj2.7/screen2.png', 'wb') as file:
                     file.write(image_data)
 
@@ -80,9 +81,9 @@ def main():
 
 if '__main__' == __name__:
     funk.copy_file([r'/Users/iftach_1kasorla/Documents/proj2.7/README.md', r'/Users/iftach_1kasorla/Documents/proj2.7/README1.md'])
-    assert r'/Users/iftach_1kasorla/Documents/proj2.7/README1.md' in funk.dir_file([r'/Users/iftach_1kasorla/Documents/proj2.7', ''])
+    assert r'/Users/iftach_1kasorla/Documents/proj2.7/README1.md' in funk.assert_dir([r'/Users/iftach_1kasorla/Documents/proj2.7', ''])
     funk.del_file([r'/Users/iftach_1kasorla/Documents/cyberDemo/new2.md', ''])
-    assert not r'/Users/iftach_1kasorla/Documents/cyberDemo/new2.md' in funk.dir_file([r'/Users/iftach_1kasorla/Documents/proj2.7', ''])
+    assert not r'/Users/iftach_1kasorla/Documents/cyberDemo/new2.md' in funk.assert_dir([r'/Users/iftach_1kasorla/Documents/proj2.7', ''])
 
     if not os.path.isdir(LOG_DIR):
         os.makedirs(LOG_DIR)
